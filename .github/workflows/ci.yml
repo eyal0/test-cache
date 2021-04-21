@@ -19,14 +19,14 @@ jobs:
     - name: Get a random number
       run: echo "RANDOM_SUFFIX=${RANDOM}${RANDOM}" >> $GITHUB_ENV
     - name: Cache foo
-      uses: env0/cache@64daede5552c68991cba51f3bc0ac2bc26945a11
+      uses: eyal0/skip-save
       with:
         path: foo
         key: foo-${{ env.RANDOM_SUFFIX }}
         restore-keys: |
           foo-
     - name: Cache bar
-      uses: env0/cache@64daede5552c68991cba51f3bc0ac2bc26945a11
+      uses: eyal0/skip-save
       with:
         path: bar
         key: bar-${{ env.RANDOM_SUFFIX }}
