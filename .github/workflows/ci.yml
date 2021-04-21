@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-cache:
+    runs-on: ubuntu-latest
+    steps:
+    - name: make some data
+      run: |
+        mkdir foo
+        echo "hello" > foo/foo.txt
+        mkdir bar
+        echo "goodbye" > bar/bar.txt
+    - name: Get a random number
+      run: echo "RANDOM_SUFFIX=${RANDOM}${RANDOM}" >> $GITHUB_ENV
+    - name: Cache foo
+      uses: env0/cache:feature/skip-save
+      with:
+        path: foo
+        key: foo-${{ env.RANDOM_SUFFIX }}
+        restore-keys: |
+          foo-
+    - name: Cache bar
+      uses: env0/cache:feature/skip-save
+      with:
+        path: bar
+        key: bar-${{ env.RANDOM_SUFFIX }}
+        restore-keys: |
+          bar-
