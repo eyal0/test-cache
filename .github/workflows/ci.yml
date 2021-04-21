@@ -26,7 +26,7 @@ jobs:
         restore-keys: |
           foo-
     - name: Cache bar
-      uses: env0/cache:feature/skip-save
+      uses: env0/cache@64daede5552c68991cba51f3bc0ac2bc26945a11
       with:
         path: bar
         key: bar-${{ env.RANDOM_SUFFIX }}
