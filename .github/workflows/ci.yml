@@ -20,6 +20,7 @@ jobs:
       run: echo "RANDOM_SUFFIX=${RANDOM}${RANDOM}" >> $GITHUB_ENV
     - name: Skip save
       run: echo "CACHE_SKIP_SAVE=true" >> $GITHUB_ENV
+
     - name: Cache foo
       uses: eyal0/cache@skip-save
       with:
