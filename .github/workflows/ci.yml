@@ -36,3 +36,4 @@ jobs:
         skip-save: ${{ env.SKIP_FOR_BAR }}
     - name: Skip save
       run: echo "SKIP_FOR_FOO=true" >> $GITHUB_ENV
+
