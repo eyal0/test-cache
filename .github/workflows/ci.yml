@@ -18,9 +18,6 @@ jobs:
         echo "goodbye" > bar/bar.txt
     - name: Get a random number
       run: echo "RANDOM_SUFFIX=${RANDOM}${RANDOM}" >> $GITHUB_ENV
-    - name: Skip save
-      run: echo "CACHE_SKIP_SAVE=true" >> $GITHUB_ENV
-
     - name: Cache foo
       uses: eyal0/cache@skip-save
       with:
@@ -28,6 +25,7 @@ jobs:
         key: foo-${{ env.RANDOM_SUFFIX }}
         restore-keys: |
           foo-
+        skip-save: ${{ env.SKIP_FOR_FOO }}
     - name: Cache bar
       uses: eyal0/cache@skip-save
       with:
@@ -35,3 +33,6 @@ jobs:
         key: bar-${{ env.RANDOM_SUFFIX }}
         restore-keys: |
           bar-
+        skip-save: ${{ env.SKIP_FOR_BAR }}
+    - name: Skip save
+      run: echo "SKIP_FOR_FOO=true" >> $GITHUB_ENV
